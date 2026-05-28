@@ -15,7 +15,7 @@ export const ThemeProvider = ({ children }) => {
       ? {
           background: '#121212',
           text: '#ffffff',
-          button: '#bb86fc',
+          button: '#e7ff10',
           buttonText: '#000000',
           header: '#1f1f1f',
           headerTitle: '#ffffff',

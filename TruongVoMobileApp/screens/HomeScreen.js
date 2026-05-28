@@ -19,6 +19,15 @@ export default function HomeScreen({ navigation }) {
         </Text>
       </TouchableOpacity>
 
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: colors.button }]}
+        onPress={() => navigation.navigate('YetAnotherPage')}
+      >
+        <Text style={[styles.buttonText, { color: colors.buttonText }]}>
+          Go to Yet Another Page
+        </Text>
+      </TouchableOpacity>
+
       <View style={{ marginTop: 30, flexDirection: 'row', alignItems: 'center' }}>
         <Text style={{ color: colors.text, fontSize: 16, marginRight: 10 }}>Dark Mode</Text>
         <Switch value={isDarkMode} onValueChange={toggleTheme} />
