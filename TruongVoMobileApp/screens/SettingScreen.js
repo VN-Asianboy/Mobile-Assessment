@@ -1,30 +1,46 @@
-import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, Switch } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { View, Text, Switch } from 'react-native';
+import Slider from '@react-native-community/slider';
 import styles from '../styles';
 import { ThemeContext } from '../darkmode';
-import { TextInput } from 'react-native';
 
-export default function SettingScreen({ navigation }) {
-  const { isDarkMode, toggleTheme, colors } = useContext(ThemeContext);
+export default function SettingScreen() {
+  const { isDarkMode, toggleTheme, colors } =
+    useContext(ThemeContext);
+
+  const [volumeEnabled, setVolumeEnabled] =
+    useState(true);
+
+  const [textSize, setTextSize] =
+    useState(18);
 
   return (
-    <View style={[styles.mainContainer, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.text }]}>Setting Page</Text>
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: colors.button }]}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={[styles.buttonText, { color: colors.buttonText }]}>Go to Home</Text>
-      </TouchableOpacity>
+    <View
+      style={[styles.mainContainer,{backgroundColor: colors.background,flex: 1,},]}
+    >
+      <Text style={[styles.title,{color: colors.text,fontSize: textSize,},]}>Settings</Text>
 
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: colors.button }]}
-        onPress={() => navigation.navigate('EventsScreen')}>
-        <Text style={[styles.buttonText, { color: colors.buttonText }]}>Events Page</Text>
-      </TouchableOpacity>
+      <View style={styles.settingRow}>
+        <Text style={{color: colors.text,fontSize: textSize,}}>Dark Mode</Text>
 
-      <View style={{ marginTop: 30, flexDirection: 'row', alignItems: 'center' }}>
-        <Text style={{ color: colors.text, fontSize: 16, marginRight: 10 }}>Dark Mode</Text>
-        <Switch value={isDarkMode} onValueChange={toggleTheme} />
+        <Switch value={isDarkMode}onValueChange={toggleTheme}/>
+      </View>
+
+      <View style={styles.settingRow}>
+        <Text style={{color: colors.text,fontSize: textSize,}}>Volume</Text>
+
+        <Switch value={volumeEnabled}onValueChange={setVolumeEnabled}/>
+      </View>
+
+      <View style={{width: '90%',marginTop: 20,}}>
+        <Text style={{color: colors.text,fontSize: textSize,}}>Text Size</Text>
+
+        <Slider
+          minimumValue={12}
+          maximumValue={30}
+          value={textSize}
+          onValueChange={setTextSize}
+        />
       </View>
     </View>
   );
