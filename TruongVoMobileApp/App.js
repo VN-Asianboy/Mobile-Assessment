@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
-import AnotherPage from './screens/AnotherPage';
-import YetAnotherPage from './screens/YetAnotherPage';
+import EventsScreen from './screens/EventsScreen';
+import SettingScreen from './screens/SettingScreen';
 import { ThemeProvider, ThemeContext } from './darkmode';
 
 const Stack = createStackNavigator();
@@ -20,8 +20,8 @@ function AppNavigator() {
         }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="AnotherPage" component={AnotherPage} />
-        <Stack.Screen name="YetAnotherPage" component={YetAnotherPage} />
+        <Stack.Screen name="EventsScreen" component={EventsScreen} />
+        <Stack.Screen name="SettingScreen" component={SettingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

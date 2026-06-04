@@ -2,30 +2,27 @@ import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, Switch } from 'react-native';
 import styles from '../styles';
 import { ThemeContext } from '../darkmode';
+import { TextInput } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
   const { isDarkMode, toggleTheme, colors } = useContext(ThemeContext);
 
   return (
     <View style={[styles.mainContainer, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.text }]}>Bare Template</Text>
+      <Text style={[styles.title, { color: colors.text }]}>Home</Text>
 
       <TouchableOpacity
         style={[styles.button, { backgroundColor: colors.button }]}
-        onPress={() => navigation.navigate('AnotherPage')}
-      >
-        <Text style={[styles.buttonText, { color: colors.buttonText }]}>
-          Go to Another Page
-        </Text>
+        onPress={() => navigation.navigate('EventsScreen')}>
+
+        <Text style={[styles.buttonText, { color: colors.buttonText }]}>Events Page</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.button, { backgroundColor: colors.button }]}
-        onPress={() => navigation.navigate('YetAnotherPage')}
-      >
-        <Text style={[styles.buttonText, { color: colors.buttonText }]}>
-          Go to Yet Another Page
-        </Text>
+        onPress={() => navigation.navigate('SettingScreen')}>
+
+        <Text style={[styles.buttonText, { color: colors.buttonText }]}>Setting Page</Text>
       </TouchableOpacity>
 
       <View style={{ marginTop: 30, flexDirection: 'row', alignItems: 'center' }}>
