@@ -26,38 +26,19 @@ export default function EventsScreen() {
     event => event.date === today
   );
 
+  const filteredEvents = events.filter(event => //Event filter and search
+  event.name.toLowerCase().includes(search.toLowerCase()) ||
+  event.info.toLowerCase().includes(search.toLowerCase()) ||
+  event.id.includes(search) ||
+  event.date.includes(search)
+);
+
   return (
     <ScrollView
       style={{ backgroundColor: colors.background }}
       contentContainerStyle={{alignItems: 'center',paddingVertical: 20,}}>
 
       <Text style={[styles.title, { color: colors.text }]}>Events</Text>
-
-      <Text style={[styles.label, { color: colors.text }]}>Event ID</Text>
-      <TextInput
-        style={[styles.input,{borderColor: colors.text,color: colors.text,},]}
-        value={eventID}
-        onChangeText={setEventID}
-      />
-
-      <Text style={[styles.label, { color: colors.text }]}>Event Name</Text>
-      <TextInput
-        style={[styles.input,{borderColor: colors.text,color: colors.text,},]}
-        value={eventName}
-        onChangeText={setEventName}
-      />
-
-      <Text style={[styles.label, { color: colors.text }]}>Event Info</Text>
-      <TextInput
-        style={[styles.input,{borderColor: colors.text,color: colors.text,},]}
-        value={eventInfo}
-        onChangeText={setEventInfo}
-      />
-
-      <TouchableOpacity
-        style={[styles.registerButton,{ backgroundColor: colors.button },]}>
-        <Text style={[styles.buttonText,{ color: colors.buttonText },]}>Register</Text>
-      </TouchableOpacity>
 
       <Text style={[styles.sectionTitle,{ color: colors.text },]}>Search Event</Text>
       <TextInput
@@ -91,7 +72,23 @@ export default function EventsScreen() {
       <Text style={[styles.sectionTitle,{color: colors.text,},]}> All Events</Text>
 
       {
-        events.map(event => (
+        filteredEvents.length === 0 ? (<Text style={{ color: colors.text }}> Event not found</Text>) : 
+        (
+          filteredEvents.map(event => (
+            <View
+              key={event.id}
+              style={[styles.eventCard,{borderColor: colors.text,},]}>
+
+              <Text style={{ color: colors.text }}> Event ID: {event.id}</Text>
+              <Text style={{ color: colors.text }}> Event Name: {event.name}</Text>
+              <Text style={{ color: colors.text }}> Event Info: {event.info}</Text>
+              <Text style={{ color: colors.text }}> Date: {event.date}</Text>
+            </View>
+          ))
+        )
+      }
+      {
+        filteredEvents.map(event => (
           <View
             key={event.id}
             style={[styles.eventCard,{borderColor: colors.text,},]}>
