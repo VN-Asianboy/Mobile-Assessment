@@ -87,19 +87,6 @@ export default function EventsScreen() {
           ))
         )
       }
-      {
-        filteredEvents.map(event => (
-          <View
-            key={event.id}
-            style={[styles.eventCard,{borderColor: colors.text,},]}>
-
-            <Text style={{ color: colors.text }}> Event ID: {event.id}</Text>
-            <Text style={{ color: colors.text }}> Event Name: {event.name}</Text>
-            <Text style={{ color: colors.text }}> Event Info: {event.info}</Text>
-            <Text style={{ color: colors.text }}> Date: {event.date}</Text>
-          </View>
-        ))
-      }
     </ScrollView>
   );
 }
