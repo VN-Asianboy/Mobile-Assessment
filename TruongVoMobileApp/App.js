@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
 import SettingScreen from './screens/SettingScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 import { ThemeProvider, ThemeContext } from './darkmode';
 
@@ -28,6 +29,7 @@ function AppNavigator() {
       >
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="EventsScreen" component={EventsScreen} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="SettingScreen" component={SettingScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -23,6 +23,13 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate('SettingScreen')}>
         <Text style={[styles.cardText,{ color: colors.buttonText },]}> Settings</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.homeCard,{backgroundColor: colors.button,},]}
+        onPress={() => navigation.navigate('RegisterScreen')}>
+          
+        <Text style={[styles.cardText,{color: colors.buttonText,},]}>Register</Text>
+      </TouchableOpacity>
     </View>
   );
 }
