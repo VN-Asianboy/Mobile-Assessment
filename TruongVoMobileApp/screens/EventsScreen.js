@@ -8,14 +8,23 @@ import {
 } from 'react-native';
 import styles from '../styles';
 import { ThemeContext } from '../darkmode';
+import { EventContext } from '../EventContext';
 
 export default function EventsScreen() {
   const { colors } = useContext(ThemeContext);
+  const { events } = useContext(EventContext);
 
   const [eventID, setEventID] = useState('');
   const [eventName, setEventName] = useState('');
   const [eventInfo, setEventInfo] = useState('');
   const [search, setSearch] = useState('');
+
+  const today = new Date() //This is pretty nice, when register an event, it will update the date to the lastest...
+  .toISOString()
+  .split('T')[0];
+  const todaysEvents = events.filter(
+    event => event.date === today
+  );
 
   return (
     <ScrollView
@@ -59,15 +68,41 @@ export default function EventsScreen() {
         onChangeText={setSearch}
       />
 
-      <Text style={[styles.sectionTitle,{ color: colors.text },]}>Registered Events</Text>
-      <View
-        style={[styles.eventCard,{ borderColor: colors.text },]}>
-        <Text style={{ color: colors.text }}>Event ID: 001</Text>
+      <Text style={[styles.sectionTitle,{color: colors.text,},]}> Today's Events</Text>
 
-        <Text style={{ color: colors.text }}>Event Name: Sample Event</Text>
+      {
+        todaysEvents.length === 0 ? (<Text style={{ color: colors.text }}> No events today</Text>) : 
+        (
+          todaysEvents.map(event => (
 
-        <Text style={{ color: colors.text }}>Event Info: Example Information</Text>
-      </View>
+            <View
+              key={event.id}
+              style={[styles.eventCard,{borderColor: colors.text,},]}>
+
+              <Text style={{ color: colors.text }}> Event ID: {event.id}</Text>
+              <Text style={{ color: colors.text }}> Event Name: {event.name}</Text>
+              <Text style={{ color: colors.text }}> Event Info: {event.info}</Text>
+              <Text style={{ color: colors.text }}> Date: {event.date}</Text>
+            </View>
+          ))
+        )
+      }
+
+      <Text style={[styles.sectionTitle,{color: colors.text,},]}> All Events</Text>
+
+      {
+        events.map(event => (
+          <View
+            key={event.id}
+            style={[styles.eventCard,{borderColor: colors.text,},]}>
+
+            <Text style={{ color: colors.text }}> Event ID: {event.id}</Text>
+            <Text style={{ color: colors.text }}> Event Name: {event.name}</Text>
+            <Text style={{ color: colors.text }}> Event Info: {event.info}</Text>
+            <Text style={{ color: colors.text }}> Date: {event.date}</Text>
+          </View>
+        ))
+      }
     </ScrollView>
   );
 }

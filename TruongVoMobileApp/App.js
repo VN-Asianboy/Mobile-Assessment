@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { EventProvider } from './EventContext';
 
 import HomeScreen from './screens/HomeScreen';
 import EventsScreen from './screens/EventsScreen';
@@ -39,7 +40,9 @@ function AppNavigator() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppNavigator />
+      <EventProvider>
+        <AppNavigator />
+      </EventProvider>
     </ThemeProvider>
   );
 }
